@@ -7,27 +7,43 @@ public class CarController : MonoBehaviour
 {
     #region DEFINITIONS
 
-    public enum Axle  // Differentiate the Axle side
+    /* WHEEL CONFIGURATION */
+
+    public enum Axle
     {
         Front,
         Rear
     }
 
     [Serializable]
-    public struct Wheel  // To add wheels into list
+    public struct Wheel
     {
         public GameObject WheelModel;
         public WheelCollider _WheelCollider;
         public Axle _Axle;
     }
 
+    public List<Wheel> _Wheels;
+
+    /* SENSITIVITY AND PHYSICS */
+
+    [Header("Acceleration and Torque")]
     public float _MaxAcceleration;
     public float _BrakeAcceleration;
     private float _TorqueMultiplier = 941f;
 
-    public List<Wheel> _Wheels;
+    [Header("Steering Configuration")]
+    public float TurnSensitivity = 1f;
+    public float MaxSteeringAngle = 30.0f;
 
+    /* PLAYER INPUTS */
+
+    [Header("Player Inputs")]
     [SerializeField] float MoveInput;
+    [SerializeField] float SteerInput;
+
+
+    /* GAMEOBJECT COMPONENT REFERENCES */
 
     private Rigidbody _rb;
 
@@ -46,20 +62,34 @@ public class CarController : MonoBehaviour
     void LateUpdate()
     {
         RotateWheels();
+        SteerTruck();
     }
 
-    void GetPlayerInputs()
+    private void GetPlayerInputs()
     {
         MoveInput = Input.GetAxis("Vertical");
+        SteerInput = Input.GetAxis("Horizontal");
     }
 
-    void RotateWheels()
+    private void RotateWheels()
     {
         foreach (Wheel wheel in _Wheels)
         {
             if(wheel._WheelCollider != null)
             {
                 wheel._WheelCollider.motorTorque = MoveInput * _TorqueMultiplier *_MaxAcceleration * Time.deltaTime;
+            }
+        }
+    }
+
+    private void SteerTruck()
+    {
+        foreach (Wheel wheel in _Wheels)
+        {
+            if(wheel._Axle == Axle.Front)
+            {
+                float steerAngle = SteerInput * TurnSensitivity * MaxSteeringAngle;
+                wheel._WheelCollider.steerAngle = Mathf.Lerp(wheel._WheelCollider.steerAngle, steerAngle, 1f);
             }
         }
     }

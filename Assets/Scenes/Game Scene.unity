@@ -4833,8 +4833,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf45be3f009bf964a83ceac70fe0f98f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MaxAcceleration: 20
-  _BrakeAcceleration: 40
   _Wheels:
   - WheelModel: {fileID: 3955604333906156257}
     _WheelCollider: {fileID: 945164399}
@@ -4848,7 +4846,12 @@ MonoBehaviour:
   - WheelModel: {fileID: 3955604333718032344}
     _WheelCollider: {fileID: 2046200585}
     _Axle: 1
+  _MaxAcceleration: 20
+  _BrakeAcceleration: 40
+  TurnSensitivity: 0
+  MaxSteeringAngle: 30
   MoveInput: 0
+  SteerInput: 0
 --- !u!23 &1896010855413782674
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23463,8 +23466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf45be3f009bf964a83ceac70fe0f98f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MaxAcceleration: 20
-  _BrakeAcceleration: 20
   _Wheels:
   - WheelModel: {fileID: 6265329639212621571}
     _WheelCollider: {fileID: 1140215135}
@@ -23474,11 +23475,16 @@ MonoBehaviour:
     _Axle: 0
   - WheelModel: {fileID: 2937760571551370820}
     _WheelCollider: {fileID: 321597077}
-    _Axle: 0
+    _Axle: 1
   - WheelModel: {fileID: 0}
     _WheelCollider: {fileID: 1478236508}
-    _Axle: 0
+    _Axle: 1
+  _MaxAcceleration: 20
+  _BrakeAcceleration: 20
+  TurnSensitivity: 1
+  MaxSteeringAngle: 30
   MoveInput: 0
+  SteerInput: 0
 --- !u!4 &7348702679765558459
 Transform:
   m_ObjectHideFlags: 0
