@@ -64,6 +64,7 @@ public class CarController : MonoBehaviour
     {
         AccelerateTruck();
         SteerTruck();
+        BrakeSystem();
     }
 
     private void GetPlayerInputs()
@@ -104,10 +105,37 @@ public class CarController : MonoBehaviour
         {
             Quaternion rot;
             Vector3 pos;
+
             wheel._WheelCollider.GetWorldPose(out pos, out rot);
-            if(wheel.WheelModel != null)
+
+            if (wheel.WheelModel != null)
             {
-                    wheel.WheelModel.transform.rotation = rot;
+                 wheel.WheelModel.transform.rotation = rot;
+            }
+        }
+    }
+
+    private void BrakeSystem()
+    {
+        if(Input.GetKey(KeyCode.Space))
+        {
+            foreach(Wheel wheel in _Wheels)
+            {
+                if(wheel._WheelCollider != null)
+                {
+                    wheel._WheelCollider.brakeTorque = 941f * _BrakeAcceleration * Time.deltaTime;
+                }
+            }
+        }
+
+        else
+        {
+            foreach (Wheel wheel in _Wheels)
+            {
+                if (wheel._WheelCollider != null)
+                {
+                    wheel._WheelCollider.brakeTorque = 0;
+                }
             }
         }
     }
