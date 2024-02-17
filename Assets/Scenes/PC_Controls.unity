@@ -697,6 +697,7 @@ MonoBehaviour:
   - Pick up the gear stop from the trailer
   - Place the gear stop behind rear left tyre
   EndPosition: {fileID: 1234386660}
+  StepCount: 0
 --- !u!1 &686475556
 GameObject:
   m_ObjectHideFlags: 0
@@ -21232,7 +21233,7 @@ GameObject:
   - component: {fileID: 7329932078180711204}
   - component: {fileID: 7329932078180711205}
   m_Layer: 0
-  m_Name: ZIL130_Cover
+  m_Name: Player Truck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
