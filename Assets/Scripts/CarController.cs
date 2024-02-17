@@ -123,7 +123,7 @@ public class CarController : MonoBehaviour
             {
                 if(wheel._WheelCollider != null)
                 {
-                    wheel._WheelCollider.brakeTorque = 941f * _BrakeAcceleration * Time.deltaTime;
+                    wheel._WheelCollider.brakeTorque = _TorqueMultiplier * _BrakeAcceleration * Time.deltaTime;
                 }
             }
         }
