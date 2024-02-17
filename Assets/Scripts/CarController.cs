@@ -57,11 +57,12 @@ public class CarController : MonoBehaviour
     void Update()
     {
         GetPlayerInputs();
+        RotateWheels();
     }
 
     void LateUpdate()
     {
-        RotateWheels();
+        AccelerateTruck();
         SteerTruck();
     }
 
@@ -71,7 +72,7 @@ public class CarController : MonoBehaviour
         SteerInput = Input.GetAxis("Horizontal");
     }
 
-    private void RotateWheels()
+    private void AccelerateTruck()
     {
         foreach (Wheel wheel in _Wheels)
         {
@@ -86,10 +87,27 @@ public class CarController : MonoBehaviour
     {
         foreach (Wheel wheel in _Wheels)
         {
-            if(wheel._Axle == Axle.Front)
+            if (wheel._WheelCollider != null)
             {
-                float steerAngle = SteerInput * TurnSensitivity * MaxSteeringAngle;
-                wheel._WheelCollider.steerAngle = Mathf.Lerp(wheel._WheelCollider.steerAngle, steerAngle, 1f);
+                if (wheel._Axle == Axle.Front)
+                {
+                    float steerAngle = SteerInput * TurnSensitivity * MaxSteeringAngle;
+                    wheel._WheelCollider.steerAngle = Mathf.Lerp(wheel._WheelCollider.steerAngle, steerAngle, 1f);
+                }
+            }
+        }
+    }
+
+    private void RotateWheels()
+    {
+        foreach(Wheel wheel in _Wheels)
+        {
+            Quaternion rot;
+            Vector3 pos;
+            wheel._WheelCollider.GetWorldPose(out pos, out rot);
+            if(wheel.WheelModel != null)
+            {
+                    wheel.WheelModel.transform.rotation = rot;
             }
         }
     }
