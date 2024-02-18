@@ -76104,6 +76104,9 @@ MonoBehaviour:
   MaxSteeringAngle: 30
   MoveInput: 0
   SteerInput: 0
+  IsDoorOpen: 0
+  DriverDoor: {fileID: 5808039902702914459}
+  DoorRotation: {x: 0, y: 80, z: 0}
 --- !u!1 &2380149953476610366
 GameObject:
   m_ObjectHideFlags: 0
@@ -76505,7 +76508,6 @@ GameObject:
   - component: {fileID: 2525127478728617491}
   - component: {fileID: 7030904033650451445}
   - component: {fileID: 2975890152760279591}
-  - component: {fileID: 7030904033650451446}
   m_Layer: 0
   m_Name: Zil_Door_FR
   m_TagString: Untagged
@@ -77065,20 +77067,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7030904033650451446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4433590574225201563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2dba022832a99c428ec3803b7b5ca23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDoorOpen: 0
-  TargetRotation: {x: 0.000017488115, y: 0.3827497, z: 0.00000786489, w: 0.92385215}
 --- !u!23 &7164469867993181308
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,22 +43,33 @@ public class CarController : MonoBehaviour
     [SerializeField] float MoveInput;
     [SerializeField] float SteerInput;
 
+    [SerializeField] bool IsDoorOpen;
+
 
     /* GAMEOBJECT COMPONENT REFERENCES */
 
     private Rigidbody _rb;
+    [Header("GameObject References")]
+    [SerializeField] Transform DriverDoor;
+
+    [SerializeField] Vector3 DoorRotation;
 
     #endregion
+
+    #region FRAME CYCLES
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+
+        IsDoorOpen = false;
     }
 
     void Update()
     {
         GetPlayerInputs();
         RotateWheels();
+        DoorToggleInputs();
     }
 
     void LateUpdate()
@@ -67,19 +79,44 @@ public class CarController : MonoBehaviour
         BrakeSystem();
     }
 
+    #endregion
+
+    #region INPUT VALUES
+
     private void GetPlayerInputs()
     {
         MoveInput = Input.GetAxis("Vertical");
         SteerInput = Input.GetAxis("Horizontal");
     }
 
+    private void DoorToggleInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (!IsDoorOpen)
+            {
+                ToggleDoors(true);
+
+            }
+
+            else
+            {
+                ToggleDoors(false);
+            }
+        }
+    }
+
+    #endregion
+
+    #region VEHICLE MOVEMENTS
+
     private void AccelerateTruck()
     {
         foreach (Wheel wheel in _Wheels)
         {
-            if(wheel._WheelCollider != null)
+            if (wheel._WheelCollider != null)
             {
-                wheel._WheelCollider.motorTorque = MoveInput * _TorqueMultiplier *_MaxAcceleration * Time.deltaTime;
+                wheel._WheelCollider.motorTorque = MoveInput * _TorqueMultiplier * _MaxAcceleration * Time.deltaTime;
             }
         }
     }
@@ -99,29 +136,13 @@ public class CarController : MonoBehaviour
         }
     }
 
-    private void RotateWheels()
-    {
-        foreach(Wheel wheel in _Wheels)
-        {
-            Quaternion rot;
-            Vector3 pos;
-
-            wheel._WheelCollider.GetWorldPose(out pos, out rot);
-
-            if (wheel.WheelModel != null)
-            {
-                 wheel.WheelModel.transform.rotation = rot;
-            }
-        }
-    }
-
     private void BrakeSystem()
     {
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
-            foreach(Wheel wheel in _Wheels)
+            foreach (Wheel wheel in _Wheels)
             {
-                if(wheel._WheelCollider != null)
+                if (wheel._WheelCollider != null)
                 {
                     wheel._WheelCollider.brakeTorque = _TorqueMultiplier * _BrakeAcceleration * Time.deltaTime;
                 }
@@ -139,4 +160,54 @@ public class CarController : MonoBehaviour
             }
         }
     }
+
+    #endregion
+
+    #region WHEEL ANIMATION
+
+    private void RotateWheels()
+    {
+        foreach (Wheel wheel in _Wheels)
+        {
+            Quaternion rot;
+            Vector3 pos;
+
+            wheel._WheelCollider.GetWorldPose(out pos, out rot);
+
+            if (wheel.WheelModel != null)
+            {
+                wheel.WheelModel.transform.rotation = rot;
+            }
+        }
+    }
+
+    #endregion
+
+    #region DOOR ANIMATION
+
+    private void ToggleDoors(bool val)
+    {
+        if(DriverDoor != null)
+        {
+            if (val)
+            {
+                DriverDoor.DOLocalRotate(DoorRotation, 1.5f, RotateMode.LocalAxisAdd);
+                IsDoorOpen = true;
+            }
+
+            else
+            {
+                DriverDoor.DOLocalRotate(DoorRotation * -1f, 1.5f, RotateMode.LocalAxisAdd);
+                IsDoorOpen = false;
+            }
+        }
+        
+    }
+
+    #endregion
+
+
+
+
+
 }
