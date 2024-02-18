@@ -1,3 +1,7 @@
+// Author: Vignesh Manikandan
+// Date: 17 Feb 2024
+
+
 using DG.Tweening;
 using System;
 using System.Collections;
@@ -49,6 +53,7 @@ public class CarController : MonoBehaviour
     /* GAMEOBJECT COMPONENT REFERENCES */
 
     private Rigidbody _rb;
+
     [Header("GameObject References")]
     [SerializeField] Transform DriverDoor;
 
@@ -205,9 +210,4 @@ public class CarController : MonoBehaviour
     }
 
     #endregion
-
-
-
-
-
 }
