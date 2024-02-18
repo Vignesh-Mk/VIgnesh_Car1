@@ -154,6 +154,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &192468583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 192468584}
+  m_Layer: 0
+  m_Name: Parent_Truck_Wheel_FR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &192468584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192468583}
+  serializedVersion: 2
+  m_LocalRotation: {x: 1.4210855e-14, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.87298584, y: 0.50801086, z: 1.7661958}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1814112227006057904}
+  m_Father: {fileID: 5015736312887354986}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &216053311
 GameObject:
   m_ObjectHideFlags: 0
@@ -75779,12 +75811,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7886350155134829590}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000437114, y: 1, z: -0.00000028212995, w: -0.000000043711374}
-  m_LocalPosition: {x: 0.70899963, y: 0.50801224, z: 1.7661958}
+  m_LocalRotation: {x: -0.0000000437114, y: 1, z: -0.00000028212997, w: -0.000000043711374}
+  m_LocalPosition: {x: -0.16397095, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5015736312887354986}
+  m_Father: {fileID: 192468584}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1867239266755232674
 MonoBehaviour:
@@ -76054,7 +76086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Wheels:
-  - WheelModel: {fileID: 7886350155134829590}
+  - WheelModel: {fileID: 192468583}
     _WheelCollider: {fileID: 843754657677084110}
     _Axle: 0
   - WheelModel: {fileID: 7016668532782891173}
@@ -76521,7 +76553,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4000122027498268702}
-  - {fileID: 1814112227006057904}
+  - {fileID: 192468584}
   - {fileID: 7583020382496712752}
   m_Father: {fileID: 8743929827992550395}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -77265,7 +77297,7 @@ Transform:
   m_GameObject: {fileID: 2380149953476610366}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -319.40103, y: 70.25, z: -86.7}
+  m_LocalPosition: {x: -319.40103, y: 70.25, z: -4.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
